@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: notifyflow-postgres
+    environment:
+      POSTGRES_DB: notifyflow
+      POSTGRES_USER: notifyflow
+      POSTGRES_PASSWORD: notifyflow
+    ports:
+      - "5432:5432"
+    volumes:
+      - notifyflow_pgdata:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: notifyflow-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+volumes:
+  notifyflow_pgdata:
